@@ -1,7 +1,7 @@
 # OFP–OSDU ESG Validator Tool
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/123456789.svg)](https://zenodo.org/record/123456789)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17262927.svg)](https://doi.org/10.5281/zenodo.17262927)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![Validation](https://img.shields.io/badge/validator-GHG%2FCCS%2FUHS-green)
 
@@ -54,7 +54,7 @@ ofp-osdu-validator/
 If you use this tool, please cite:
 
 ```
-Muktevi, S. et al. (2025). OFP–OSDU ESG Validator Tool: Schema-Based Validation for Synthetic GHG, CCS, and UHS Datasets. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Muktevi, S. et al. (2025). OFP–OSDU ESG Validator Tool: Schema-Based Validation for Synthetic GHG, CCS, and UHS Datasets. Zenodo.(https://doi.org/10.5281/zenodo.17262927)
 ```
 
 ## License
