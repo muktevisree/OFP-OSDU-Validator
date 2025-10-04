@@ -1,0 +1,28 @@
+
+title: Synthetic CCS Dataset Schema (OFP–OSDU Aligned)
+type: object
+properties:
+  site_id:
+    type: string
+  reporting_period:
+    type: string
+    format: date
+  reservoir_type:
+    type: string
+  co2_injected:
+    type: number
+  co2_leaked:
+    type: number
+  co2_stored:
+    type: number
+  monitoring_method:
+    type: string
+  verification_agency:
+    type: string
+required:
+  - site_id
+  - reporting_period
+  - reservoir_type
+  - co2_injected
+  - co2_leaked
+  - co2_stored
