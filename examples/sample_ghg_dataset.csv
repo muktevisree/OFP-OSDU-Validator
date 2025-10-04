@@ -1,0 +1,4 @@
+facility_id,reporting_year,scope_1_emissions,scope_2_emissions,scope_3_emissions,total_emissions
+GHG001,2024,1250.5,340.2,890.0,2480.7
+GHG002,2024,900.0,500.0,0.0,1400.0
+GHG003,2024,100.0,200.0,300.0,700.0

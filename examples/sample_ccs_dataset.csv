@@ -1,0 +1,4 @@
+site_id,reporting_period,reservoir_type,co2_injected,co2_leaked,co2_stored,monitoring_method,verification_agency
+CCS-001,2025-01-31,Saline Aquifer,1000,10,990,Seismic,EPA
+CCS-002,2025-02-28,Depleted Gas,800,20,780,Well Logs,ISO
+CCS-003,2025-03-31,Saline Aquifer,900,30,850,Tracer,DNV
