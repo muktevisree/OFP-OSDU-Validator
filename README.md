@@ -72,15 +72,11 @@ These include both valid and intentionally invalid rows for demonstration.
 
 ---
 
-## 🔬 Citation
+## 📚 Citation
 
-This tool is cited via Zenodo:
+If you use this validator tool, schemas, or datasets in your research, product, or publication, please cite:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17262927.svg)](https://doi.org/10.5281/zenodo.17262927)
-
-```
-Sreekanth Muktevi. (2025). OFP–OSDU ESG Validator [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.17262927
-```
 
 ---
 
