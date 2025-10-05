@@ -1,0 +1,4 @@
+facility_id,reservoir_type,reporting_year,cushion_gas_volume,working_gas_volume,total_storage_capacity,injection_volume,withdrawal_volume,net_flow
+UHS001,depleted_gas,2024,500.0,1500.0,2000.0,1200.0,1000.0,200.0
+UHS002,salt_cavern,2024,300.0,700.0,1000.0,800.0,700.0,100.0
+UHS003,aquifer,2024,200.0,400.0,700.0,600.0,100.0,500.0
