@@ -1,0 +1,23 @@
+schema:
+- name: facility_id
+  type: string
+- enum:
+  - depleted_gas
+  - salt_cavern
+  - aquifer
+  name: reservoir_type
+  type: string
+- name: reporting_year
+  type: integer
+- name: cushion_gas_volume
+  type: float
+- name: working_gas_volume
+  type: float
+- name: total_storage_capacity
+  type: float
+- name: injection_volume
+  type: float
+- name: withdrawal_volume
+  type: float
+- name: net_flow
+  type: float
