@@ -1,111 +1,93 @@
-# 🌍 OFP–OSDU ESG Validator
+# 🏷️ Release Notes – v0.3-uhs
 
-> Open-source Python tool to validate ESG datasets (GHG, CCS, UHS) aligned to Open Footprint (OFP) and Open Subsurface Data Universe (OSDU) schemas.
+## 🚀 What’s New
+This release delivers **Phase 3 – UHS Validator Module**, extending the ESG dataset validation suite to Underground Hydrogen Storage datasets.
 
----
+### ✅ Highlights
+- Added `validate_uhs.py` CLI script to validate UHS records
+- Introduced `suhs_schema.yaml` with expected UHS data fields
+- Created `sample_uhs_dataset.csv` with valid and invalid test cases
+- Implemented modular validation logic via `uhs_rules.py`
+- Updated folder structure and `README.md` for UHS usage
 
-## 🧭 Project Scope
-
-The validator ensures:
-- ✅ Schema conformance
-- 📏 Rule-based validation (e.g., mass balance)
-- 🔄 Modular ESG coverage (GHG → CCS → UHS)
-- 📤 FAIR-aligned data formats (CSV + YAML)
-
-Built for:
-- Researchers
-- Climate-Tech developers
-- ESG reporting analysts
-- Open-data contributors
-
----
-
-## 📁 Repository Structure
-
-```text
-ofp-osdu-validator/
-├── cli/                # CLI entry points (validate_ghg, validate_ccs)
-├── core/               # Shared logic for schema and rule validation
-├── modules/            # Domain-specific validation rules
-├── schemas/            # Schema definitions and OFP/OSDU crosswalks
-├── examples/           # Sample notebooks and test datasets
-├── tests/              # Unit tests (coming soon)
-├── streamlit_app/      # Streamlit UI (Phase 3)
-├── LICENSE
-├── README.md
-├── setup.py (optional)
+### 📁 Key Files Added
+```
+cli/validate_uhs.py
+schemas/suhs_schema.yaml
+examples/sample_uhs_dataset.csv
+modules/uhs_rules.py
 ```
 
 ---
 
-## 🚀 How to Use
-
-### 📦 1. Clone the Repository
-```bash
-git clone https://github.com/muktevisree/OFP-OSDU-Validator.git
-cd OFP-OSDU-Validator
-```
-
-### 🧪 2. Run Validator for GHG
-```bash
-python cli/validate_ghg.py examples/sample_ghg_dataset.csv schemas/ofp_schema.yaml
-```
-
-### 🛢️ 3. Run Validator for CCS
-```bash
-python cli/validate_ccs.py examples/sample_ccs_dataset.csv schemas/sccs_schema.yaml
-```
-
-Each row will return ✅ Passed or ❌ Failed, with reasoning (e.g., total ≠ sum of scopes).
-
----
-
-## 📚 Sample Data
-
-Sample CSV and YAML schema files are available in:
-- `examples/sample_ghg_dataset.csv`
-- `examples/sample_ccs_dataset.csv`
-- `schemas/ofp_schema.yaml`
-- `schemas/sccs_schema.yaml`
-
-These include both valid and intentionally invalid rows for demonstration.
+## 📦 Release Summary
+| Item | Details |
+|------|---------|
+| Version | v0.3-uhs |
+| Date | October 5, 2025 |
+| Focus | UHS Dataset Validator (Phase 3) |
+| Compatible With | GHG (v0.1), CCS (v0.2) |
+| Upcoming | Streamlit UI (v0.4), JOSS Submission (v1.0) |
 
 ---
 
 ## 📚 Citation
+Please cite the tool via Zenodo:
 
-If you use this validator tool, schemas, or datasets in your research, product, or publication, please cite:
+```
+Sreekanth Muktevi. (2025). OFP–OSDU ESG Validator [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.17262927
+```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17262927.svg)](https://doi.org/10.5281/zenodo.17262927)
-
----
-
-## 🔮 Roadmap
-
-- ✅ Phase 1: GHG Validator (Scope 1-2-3 logic)
-- ✅ Phase 2: CCS Validator (mass balance rule)
-- 🔄 Phase 3: UHS Validator (formation types, flow logic)
-- 🖥️ Phase 4: Streamlit Web App (interactive validation)
-- 🧪 Phase 5: Test Suite + JOSS submission
+> Your citation supports open-source sustainability tools and recognition of public domain contributions.
 
 ---
 
-## 🤝 Contributing
-
-Issues and PRs are welcome!
-- Fork the repo
-- Create your feature branch
-- Submit a pull request
+## 🧭 UHS Validation Rules Implemented
+- Total Storage = Cushion Gas + Working Gas
+- Net Flow = Injection Volume – Withdrawal Volume
+- Support for multiple reservoir types: `depleted_gas`, `salt_cavern`, `aquifer`
 
 ---
 
-## 👤 Author
-**Sreekanth Muktevi**  
-Vice President, IT Services – YASH Technologies  
-[GitHub](https://github.com/muktevisree) | [Zenodo](https://zenodo.org/records/17262927)
+## 📘 UHS CLI Usage
+To validate a UHS dataset:
+```bash
+python cli/validate_uhs.py examples/sample_uhs_dataset.csv schemas/suhs_schema.yaml
+```
 
 ---
 
-## 🪪 License
+## 📁 Repository Structure (Updated)
+```
+├── cli/
+│   ├── validate_ghg.py
+│   ├── validate_ccs.py
+│   └── validate_uhs.py
+├── modules/
+│   ├── ghg_rules.py
+│   ├── ccs_rules.py
+│   └── uhs_rules.py
+├── schemas/
+│   ├── ghg_schema.yaml
+│   ├── sccs_schema.yaml
+│   └── suhs_schema.yaml
+├── examples/
+│   ├── sample_ghg_dataset.csv
+│   ├── sample_ccs_dataset.csv
+│   └── sample_uhs_dataset.csv
+```
 
-This repository is licensed under **MIT License** – see [LICENSE](LICENSE) file.
+---
+
+## 🛣️ Roadmap
+- ✅ Phase 1 – GHG Validator (v0.1)
+- ✅ Phase 2 – CCS Validator (v0.2)
+- ✅ Phase 3 – UHS Validator (v0.3)
+- 🔄 Phase 4 – Streamlit UI (v0.4)
+- 🧪 Phase 5 – JOSS Submission, Tests (v1.0)
+
+---
+
+For full tool and source: [https://github.com/muktevisree/OFP-OSDU-Validator](https://github.com/muktevisree/OFP-OSDU-Validator)
+
+Contact [@muktevisree](https://github.com/muktevisree) for issues, suggestions, or contributions.
