@@ -1,5 +1,11 @@
 import streamlit as st
 import pandas as pd
+import sys
+import os
+
+# ✅ Add root directory to path so modules can be found
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from modules.ghg_rules import validate_ghg_row
 from modules.ccs_rules import validate_ccs_row
 from modules.uhs_rules import validate_uhs_row
