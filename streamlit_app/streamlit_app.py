@@ -3,7 +3,7 @@ import pandas as pd
 import sys
 import os
 
-# ✅ Add root directory to path so modules can be found
+# ✅ Fix for Streamlit Cloud path resolution
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from modules.ghg_rules import validate_ghg_row
