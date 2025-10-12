@@ -1,28 +1,58 @@
-
-title: Synthetic CCS Dataset Schema (OFP–OSDU Aligned)
-type: object
-properties:
-  site_id:
+schema:
+  - name: facility_id
     type: string
-  reporting_period:
+    source: WKS:master-data--Facility
+
+  - name: country_code
+    type: string
+    source: WKS:master-data--Facility
+
+  - name: lat
+    type: float
+    source: WKS:master-data--Facility
+
+  - name: lon
+    type: float
+    source: WKS:master-data--Facility
+
+  - name: reservoir_type
+    type: string
+    enum:
+      - saline
+      - depleted_gas
+      - unmineable_coal
+    source: WKS:master-data--Facility
+
+  - name: well_id
+    type: string
+    source: WKE:Well
+
+  - name: injection_start_date
     type: string
     format: date
-  reservoir_type:
+    source: WKE:Well
+
+  - name: injection_end_date
     type: string
-  co2_injected:
-    type: number
-  co2_leaked:
-    type: number
-  co2_stored:
-    type: number
-  monitoring_method:
-    type: string
-  verification_agency:
-    type: string
-required:
-  - site_id
-  - reporting_period
-  - reservoir_type
-  - co2_injected
-  - co2_leaked
-  - co2_stored
+    format: date
+    source: WKE:Well
+
+  - name: avg_reservoir_pressure_MPa
+    type: float
+    source: WKE:Well
+
+  - name: avg_reservoir_temp_C
+    type: float
+    source: WKE:Well
+
+  - name: co2_injected_tonnes
+    type: float
+    source: WKE:ProductionData
+
+  - name: co2_leakage_tonnes
+    type: float
+    source: WKE:ProductionData
+
+  - name: storage_efficiency
+    type: float
+    source: WKE:Measurement
