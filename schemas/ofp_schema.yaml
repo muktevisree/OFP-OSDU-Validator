@@ -1,1 +1,54 @@
-# Sample OFP schema placeholder
+schema:
+  - name: facility_id
+    type: string
+    source: WKS:master-data--Facility
+
+  - name: country_code
+    type: string
+    source: WKS:master-data--Facility
+
+  - name: reporting_year
+    type: integer
+    source: WKS:master-data--Facility
+
+  - name: scope
+    type: string
+    enum:
+      - Scope 1
+      - Scope 2
+      - Scope 3
+    source: WKE:EmissionRecord
+
+  - name: emission_category
+    type: string
+    enum:
+      - Stationary Combustion
+      - Mobile Combustion
+      - Process Emissions
+      - Fugitive Emissions
+      - Purchased Electricity
+      - Employee Travel
+    source: WKE:EmissionRecord
+
+  - name: emission_value
+    type: float
+    source: WKE:EmissionRecord
+
+  - name: unit
+    type: string
+    enum:
+      - kgCO2e
+      - tonnesCO2e
+    source: WKE:EmissionRecord
+
+  - name: emission_factor
+    type: float
+    source: WKE:Measurement
+
+  - name: data_source
+    type: string
+    enum:
+      - Measured
+      - Estimated
+      - Calculated
+    source: WKE:EmissionRecord
