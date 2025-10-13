@@ -15,7 +15,7 @@ def validate_ghg_row(row):
         if pd.isna(value) or str(value).strip() == "":
             errors.append(f"Missing or empty value in required field: {field}")
 
-    # emission_value must be a positive number
+    # Validate emission_value
     try:
         emission_value = float(row.get("emission_value"))
         if emission_value <= 0:
@@ -23,7 +23,7 @@ def validate_ghg_row(row):
     except (ValueError, TypeError):
         errors.append("Invalid emission_value: not a number")
 
-    # reporting_year should be a valid integer year
+    # Validate reporting_year
     try:
         year = int(row.get("reporting_year"))
         if year < 1900 or year > 2100:
