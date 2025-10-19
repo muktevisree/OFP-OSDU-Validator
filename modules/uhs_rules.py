@@ -1,6 +1,6 @@
 import pandas as pd
 
-def validate_uhs_row(row):
+def validate_uhs_row(row, threshold=500):
     errors = []
 
     # ✅ Required fields check
@@ -24,9 +24,9 @@ def validate_uhs_row(row):
         expected = withdrawn + losses
         diff = abs(injected - expected)
 
-        if diff > 500:  # tolerance in tonnes
+        if diff > threshold:  # dynamic tolerance
             errors.append(
-                f"Mass balance mismatch: injected={injected}, expected={expected}, diff={diff:.2f} > 500"
+                f"Mass balance mismatch: injected={injected}, expected={expected}, diff={diff:.2f} > threshold={threshold}"
             )
     except Exception as e:
         errors.append(f"Error in mass balance check: {e}")
