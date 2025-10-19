@@ -1,34 +1,40 @@
+import pandas as pd
+
 def validate_ghg_row(row):
     errors = []
 
+    # ✅ Basic required field validation (customize list based on schema)
     required_fields = [
-        "facility_id",
-        "reporting_year",
-        "emission_source",
-        "ghg_type",
-        "emission_value",
-        "unit"
+        "record_id", "organization", "country_code",
+        "reporting_year", "emission_scope",
+        "emission_source_category", "emission_value"
     ]
 
     for field in required_fields:
-        value = row.get(field)
+        value = row.get(field, None)
         if pd.isna(value) or str(value).strip() == "":
-            errors.append(f"Missing or empty value in required field: {field}")
+            errors.append(f"Missing or empty value in column: {field}")
 
-    # Validate emission_value
+    # ✅ Validate reporting year is numeric and in a valid range
     try:
-        emission_value = float(row.get("emission_value"))
-        if emission_value <= 0:
-            errors.append("Invalid emission_value: must be > 0")
-    except (ValueError, TypeError):
-        errors.append("Invalid emission_value: not a number")
+        year = int(row.get("reporting_year", 0))
+        if year < 1990 or year > 2100:
+            errors.append(f"Invalid reporting year: {year}")
+    except:
+        errors.append(f"Reporting year must be a number: {row.get('reporting_year')}")
 
-    # Validate reporting_year
+    # ✅ Validate emission value is numeric
     try:
-        year = int(row.get("reporting_year"))
-        if year < 1900 or year > 2100:
-            errors.append("Invalid reporting_year")
-    except (ValueError, TypeError):
-        errors.append("Invalid reporting_year: not an integer")
+        emission = float(row.get("emission_value", 0))
+        if emission < 0:
+            errors.append("Emission value cannot be negative")
+    except:
+        errors.append(f"Invalid emission value: {row.get('emission_value')}")
+
+    # ✅ Enforce Scope must be 1, 2, or 3 only
+    valid_scopes = ["Scope 1", "Scope 2", "Scope 3", "1", "2", "3"]
+    scope = str(row.get("emission_scope", "")).strip()
+    if scope not in valid_scopes:
+        errors.append(f"Invalid emission scope: {scope}. Must be Scope 1, 2, or 3.")
 
     return errors
