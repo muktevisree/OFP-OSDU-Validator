@@ -1,3 +1,4 @@
+
 import os
 import sys
 import streamlit as st
@@ -29,10 +30,12 @@ st.markdown(
 dataset_type = st.selectbox("Select Dataset Type", ["GHG", "CCS", "UHS"])
 uploaded_file = st.file_uploader("Upload CSV file", type="csv")
 
-# 📘 Show dataset-specific guidance before validation
+# Set up threshold sliders and notes
+mass_threshold = None
+
 if dataset_type == "GHG":
     st.info(
-        "ℹ️ **Note:** GHG validation checks scope classification (1/2/3), emission sources, and activity data "
+        "ℹ️ GHG validation checks scope classification (1/2/3), emission sources, and activity data "
         "mapped to Open Footprint (OFP) schema. Ensure emission units, fuel/activity types, and years are consistent."
     )
     with st.expander("📘 GHG Dataset Header Reference"):
@@ -49,15 +52,21 @@ if dataset_type == "GHG":
         - File must be `.csv` with 1 header row
         - Emissions must be in metric tons CO₂e
         - Reporting year should be between 1990–2100
+
+        #### 📘 GHG Validation Notes
+        - Emissions must align with [Open Footprint](https://openfootprint.org/) schema.
+        - Validate scope types (1/2/3), sources, and fuel/activity mapping.
+        - Ensure all values are in **metric tons CO₂e** and year is 1990–2100.
         """)
+
 elif dataset_type == "CCS":
+    mass_threshold = st.slider("🔧 CCS Mass Balance Threshold (tonnes)", 100, 10000, 1000, step=100)
     st.info(
-        "ℹ️ **Note:** CCS validation checks capture, transport, and storage values. "
-        "Mass balance differences over `1000` tonnes are flagged as errors. "
-        "Adjust this threshold in `modules/ccs_rules.py` for your test or real datasets."
+        f"ℹ️ CCS validation checks capture, transport, and storage values. "
+        f"Mass balance differences over `{mass_threshold}` tonnes are flagged as errors."
     )
     with st.expander("📘 CCS Dataset Header Reference"):
-        st.markdown("""
+        st.markdown(f"""
         **Required Columns for CCS Validation (based on OFP + OSDU WKS):**
         ```text
         record_id, case_id, facility_id, country_code, lat, lon, capture_tech,
@@ -68,15 +77,21 @@ elif dataset_type == "CCS":
         ch4_emissions_tonnes, ogmp_source_category, co2_net_stored_tonnes
         ```
         - Dates must be in ISO format (e.g., `2023-01-01`)
-        - Mass balance: captured ≈ stored + transport + leak (±1000 tonnes)
+        - Mass balance: captured ≈ stored + transport + leak (±{mass_threshold} tonnes)
+
+        #### 📘 CCS Validation Notes
+        - Default threshold is **1000 tonnes**, adjustable using the slider above.
+        - Formula: `Captured ≈ Stored + Transport Loss + Leak (±Threshold)`
         """)
+
 elif dataset_type == "UHS":
+    mass_threshold = st.slider("🔧 UHS Mass Balance Threshold (tonnes)", 100, 10000, 500, step=100)
     st.info(
-        "ℹ️ **Note:** UHS validation checks H₂ injection/withdrawal volumes, cushion gas, and reservoir conditions "
-        "based on OSDU WKS and Open Footprint compatibility. Ensure units and timelines are aligned."
+        f"ℹ️ UHS validation checks H₂ injection/withdrawal volumes, cushion gas, and reservoir conditions. "
+        f"Mass balance mismatches over `{mass_threshold}` tonnes are flagged."
     )
     with st.expander("📘 UHS Dataset Header Reference"):
-        st.markdown("""
+        st.markdown(f"""
         **Required Columns for UHS Validation (based on OFP + OSDU WKS):**
         ```text
         record_id, case_id, facility_id, country_code, lat, lon, reservoir_type, well_id,
@@ -87,8 +102,12 @@ elif dataset_type == "UHS":
         ogmp_source_category, notes
         ```
         - Hydrogen metrics must be in tonnes
-        - Energy must be in MWh
         - Dates must be ISO 8601 format
+        - Energy must be in MWh
+
+        #### 📘 UHS Validation Notes
+        - Default threshold is **500 tonnes**, adjustable using the slider above.
+        - Formula: `Injected ≈ Withdrawn + Losses + Cushion Gas (±Threshold)`
         """)
 
 # 🚀 Perform validation
@@ -98,8 +117,13 @@ if uploaded_file and dataset_type:
 
     st.subheader("🔍 Validation Results")
     errors = []
+
     for idx, row in df.iterrows():
-        row_errors = validator_fn(row)
+        if dataset_type in ["CCS", "UHS"]:
+            row_errors = validator_fn(row, threshold=mass_threshold)
+        else:
+            row_errors = validator_fn(row)
+
         if row_errors:
             errors.append({"Row": idx + 2, "Errors": "; ".join(row_errors)})
 
