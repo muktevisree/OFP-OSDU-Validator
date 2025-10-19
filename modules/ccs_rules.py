@@ -1,9 +1,9 @@
 import pandas as pd
 
-def validate_ccs_row(row):
+def validate_ccs_row(row, threshold=1000):
     errors = []
 
-    # ✅ Mass balance check with fallback
+    # ✅ Mass balance check with user-defined threshold
     try:
         captured = float(row.get("co2_captured_tonnes", 0))
         stored = float(row.get("co2_net_stored_tonnes", 0))
@@ -13,9 +13,9 @@ def validate_ccs_row(row):
         expected_output = stored + leak + transport_loss
         diff = abs(captured - expected_output)
 
-        if diff > 1000:
+        if diff > threshold:
             errors.append(
-                f"Mass balance issue: captured={captured}, expected={expected_output}, diff={diff:.2f} > 1000"
+                f"Mass balance issue: captured={captured}, expected={expected_output}, diff={diff:.2f} > threshold={threshold}"
             )
     except Exception as e:
         errors.append(f"Error in mass balance calc: {e}")
