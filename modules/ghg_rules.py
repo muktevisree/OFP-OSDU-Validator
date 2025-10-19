@@ -3,38 +3,40 @@ import pandas as pd
 def validate_ghg_row(row):
     errors = []
 
-    # ✅ Basic required field validation (customize list based on schema)
+    # ✅ Aligned with uploaded dataset headers
     required_fields = [
-        "record_id", "organization", "country_code",
-        "reporting_year", "emission_scope",
-        "emission_source_category", "emission_value"
+        "Facility_ID", "Company", "Country", "Reporting_Year", "Emission_Value_tCO2e"
     ]
 
     for field in required_fields:
-        value = row.get(field, None)
-        if pd.isna(value) or str(value).strip() == "":
+        val = row.get(field)
+        if pd.isna(val) or str(val).strip() == "":
             errors.append(f"Missing or empty value in column: {field}")
 
-    # ✅ Validate reporting year is numeric and in a valid range
+    # ✅ Validate year is reasonable
     try:
-        year = int(row.get("reporting_year", 0))
+        year = int(row.get("Reporting_Year", 0))
         if year < 1990 or year > 2100:
-            errors.append(f"Invalid reporting year: {year}")
+            errors.append(f"Invalid Reporting_Year: {year}")
     except:
-        errors.append(f"Reporting year must be a number: {row.get('reporting_year')}")
+        errors.append(f"Non-numeric Reporting_Year: {row.get('Reporting_Year')}")
 
-    # ✅ Validate emission value is numeric
+    # ✅ Emission value must be numeric and non-negative
     try:
-        emission = float(row.get("emission_value", 0))
-        if emission < 0:
-            errors.append("Emission value cannot be negative")
+        value = float(row.get("Emission_Value_tCO2e", 0))
+        if value < 0:
+            errors.append("Emission_Value_tCO2e cannot be negative")
     except:
-        errors.append(f"Invalid emission value: {row.get('emission_value')}")
+        errors.append(f"Invalid Emission_Value_tCO2e: {row.get('Emission_Value_tCO2e')}")
 
-    # ✅ Enforce Scope must be 1, 2, or 3 only
-    valid_scopes = ["Scope 1", "Scope 2", "Scope 3", "1", "2", "3"]
-    scope = str(row.get("emission_scope", "")).strip()
-    if scope not in valid_scopes:
-        errors.append(f"Invalid emission scope: {scope}. Must be Scope 1, 2, or 3.")
+    # ✅ Optional scope columns: should be numeric if present
+    for scope_col in ["Scope_1_tCO2e", "Scope_2_tCO2e", "Scope_3_tCO2e"]:
+        if scope_col in row:
+            try:
+                val = float(row.get(scope_col, 0))
+                if val < 0:
+                    errors.append(f"{scope_col} cannot be negative")
+            except:
+                errors.append(f"Invalid value in {scope_col}: {row.get(scope_col)}")
 
     return errors
