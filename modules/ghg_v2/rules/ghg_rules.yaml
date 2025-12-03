@@ -1,0 +1,21 @@
+reporting_period_start:
+  type: date
+  required: true
+
+reporting_period_end:
+  type: date
+  required: true
+
+source_category:
+  type: string
+  required: true
+
+ghg_quantity:
+  type: number
+  required: true
+  allowed_values: [100, 200, 300, 500]  # Example values
+
+unit:
+  type: string
+  required: true
+  allowed_values: ["kg", "tonnes", "MT"]
