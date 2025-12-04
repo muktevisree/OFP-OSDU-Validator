@@ -1,0 +1,5 @@
+ghg_type,scope,source,reporting_period_start,reporting_period_end,source_category,ghg_quantity,unit,reporting_year,facility_id
+CO2,Scope 1,Combustion,2023-01-01,2023-12-31,Stationary Combustion,200,tonnes,2023,FAC1234
+CH4,Scope 2,Process Heat,2023-01-01,2023-12-31,Mobile Combustion,500,kg,2022,FAC5678
+N2O,Scope 3,Wastewater,2023-01-01,2023-12-31,Waste Treatment,300,MT,2025,FAC0001
+SF6,Scope 4,Fugitive,2023-01-01,2023-12-31,Fugitive Emissions,150,lbs,2024,FACABCD  # Invalid unit and ID

@@ -1,3 +1,17 @@
+ghg_type:
+  required: true
+  type: string
+  allowed_values: ["CO2", "CH4", "N2O", "SF6", "HFCs", "PFCs"]
+
+scope:
+  required: true
+  type: string
+  allowed_values: ["Scope 1", "Scope 2", "Scope 3"]
+
+source:
+  required: true
+  type: string
+
 reporting_period_start:
   type: date
   required: true
@@ -11,11 +25,22 @@ source_category:
   required: true
 
 ghg_quantity:
-  type: number
   required: true
-  allowed_values: [100, 200, 300, 500]  # Example values
+  type: number
+  allowed_values: [100, 200, 300, 500]
 
 unit:
-  type: string
   required: true
+  type: string
   allowed_values: ["kg", "tonnes", "MT"]
+
+reporting_year:
+  required: true
+  type: integer
+  min: 2000
+  max: 2030
+
+facility_id:
+  required: false
+  type: string
+  pattern: "^FAC[0-9]{4}$"
