@@ -1,18 +1,16 @@
 import argparse
 from validate_ghg import run_ghg_validation
+from modules.ccs_v2.validate_ccs_v2 import validate_csv as run_ccs_validation
 
-def main():
-    parser = argparse.ArgumentParser(description="ESG Dataset Validator CLI")
-    subparsers = parser.add_subparsers(dest='command', required=True)
+parser = argparse.ArgumentParser()
+parser.add_argument('command', choices=['validate-ghg', 'ccs'])
+parser.add_argument('filepath', help='Path to CSV file')
 
-    # GHG Validator CLI
-    ghg_parser = subparsers.add_parser('validate-ghg', help='Validate GHG dataset')
-    ghg_parser.add_argument('filepath', type=str, help='Path to GHG CSV file')
+args = parser.parse_args()
 
-    args = parser.parse_args()
+if args.command == 'validate-ghg':
+    run_ghg_validation(args.filepath)
+elif args.command == 'ccs':
+    run_ccs_validation(args.filepath)
 
-    if args.command == 'validate-ghg':
-        run_ghg_validation(args.filepath)
 
-if __name__ == '__main__':
-    main()
