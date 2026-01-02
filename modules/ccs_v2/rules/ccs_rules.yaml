@@ -1,0 +1,35 @@
+required_columns:
+  - case_id
+  - capture_tech
+  - co2_captured_tonnes
+  - well_id
+  - co2_injected_tonnes
+  - injection_start_date
+  - mmv_methods
+
+column_rules:
+  co2_captured_tonnes:
+    type: number
+    min: 0
+    max: 1000000
+
+  co2_injected_tonnes:
+    type: number
+    min: 0
+    max: 1000000
+
+  injection_start_date:
+    type: date
+    format: "%Y-%m-%d"
+
+  mmv_methods:
+    type: list
+    separator: ","
+    allowed_values:
+      - pressure
+      - seismic
+      - microseismic
+      - tracers
+      - production logging
+      - well integrity
+      - 4d seismic
