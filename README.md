@@ -1,101 +1,93 @@
-🏷️ Release Notes – v1.0.0
+### 🏷️ Release Notes – v1.5.0
 
-🚀 What’s New
+🚀 **What’s New**
 
-This is the first full public release (v1.0.0) of the OFP–OSDU ESG Validator – a modular, multi-domain data validation tool for ESG datasets, aligned with Open Footprint (OFP) and Open Subsurface Data Universe (OSDU) schemas.
+This v1.5.0 release of the **OFP–OSDU ESG Validator** marks a major milestone — full support for **all 10 Environmental (E) modules** using a unified CLI, modular YAML-based rule engine, and synthetic dataset examples. The validator continues to align with Open Footprint (OFP) and Open Subsurface Data Universe (OSDU) schemas for sustainability-led reporting.
 
-✅ Key Enhancements
+---
 
-🔄 Modular CLI Validation
-	•	✅ GHG Module (v0.1): Scope-based emissions validation, fuel/activity checks
-	•	✅ CCS Module (v0.2): Mass balance, reservoir validation, leak tracking
-	•	✅ UHS Module (v0.3): Hydrogen injection/withdrawal checks, MMV methods
+✅ **Key Enhancements**
 
-🌐 Streamlit UI (v0.4)
-	•	Upload any ESG dataset (GHG, CCS, UHS)
-	•	View dataset-specific header guides
-	•	Adjust threshold values for CCS/UHS mass balance
-	•	Download detailed error logs
+🔄 **Modular CLI Validation**  
+• ✅ GHG Module (v0.1)  
+• ✅ CCS Module (v0.2)  
+• ✅ UHS Module (v0.3)  
+• ✅ **Water, Air, Waste, Energy, Land, Noise, Emissions Intensity** – each with domain-specific YAML rules and validation logic
 
-🧠 Rule Engine
-	•	Built-in rule checks per domain (Scope 1/2/3, transport modes, MMV keywords)
-	•	Date parsing, field completeness, mass balance validation
-	•	Slider-enabled threshold override for flexible testing
+🧠 **Rule Engine (v2)**  
+• YAML-based validation rules per module  
+• Typed field checking, required fields, unit integrity  
+• Modular, reusable rule paths per domain  
+• Error logging and modular output structure  
 
-⸻
+📁 **Example Datasets**  
+• Each module includes a sample `.csv` dataset in `/examples`  
+• Validated against corresponding rules in `/modules/.../rules/*.yaml`
 
-🧱 File & Folder Summary
+---
 
+🧱 **File & Folder Summary**
+
+```
 ├── cli/
-│   ├── validate_ghg.py
-│   ├── validate_ccs.py
-│   └── validate_uhs.py
+│   ├── main.py
+│   ├── validate_ghg.py, validate_ccs.py, ...
 ├── modules/
-│   ├── ghg_rules.py
-│   ├── ccs_rules.py
-│   └── uhs_rules.py
-├── schemas/
-│   ├── ghg_schema.yaml
-│   ├── sccs_schema.yaml
-│   └── suhs_schema.yaml
+│   ├── ghg_v2/, ccs_v2/, ..., intensity_v2/
+│   └── rules/ per module
 ├── examples/
-│   ├── sample_ghg_dataset.csv
-│   ├── sample_ccs_dataset.csv
-│   └── sample_uhs_dataset.csv
-├── streamlit_app/
-│   └── ESG_Validator_App.py
+│   ├── sample_ghg_dataset.csv, sample_air_dataset.csv, ...
+├── shared/
+│   └── validator_engine.py
+├── schemas/
+├── streamlit_app/ (UI under development)
+├── tests/
 ├── README.md
 └── LICENSE
+```
 
+---
 
-⸻
+🧪 **Dataset Compatibility**
 
-🧪 Dataset Compatibility
+| Module               | Rules YAML                              | Sample CSV                            | CLI Support |  
+|----------------------|------------------------------------------|----------------------------------------|-------------|  
+| GHG                 | `ghg_rules.yaml`                         | `sample_ghg_dataset.csv`              | ✅ Yes      |  
+| CCS                 | `ccs_rules.yaml`                         | `sample_ccs_dataset.csv`              | ✅ Yes      |  
+| UHS                 | `uhs_rules.yaml`                         | `sample_uhs_dataset.csv`              | ✅ Yes      |  
+| Water               | `water_rules.yaml`                       | `sample_water_dataset.csv`            | ✅ Yes      |  
+| Air                 | `air_rules.yaml`                         | `sample_air_dataset.csv`              | ✅ Yes      |  
+| Waste               | `waste_rules.yaml`                       | `sample_waste_dataset.csv`            | ✅ Yes      |  
+| Energy              | `energy_rules.yaml`                      | `sample_energy_dataset.csv`           | ✅ Yes      |  
+| Land                | `land_rules.yaml`                        | `sample_land_dataset.csv`             | ✅ Yes      |  
+| Noise               | `noise_rules.yaml`                       | `sample_noise_dataset.csv`            | ✅ Yes      |  
+| Emissions Intensity | `emissions_intensity_rules.yaml`         | `sample_intensity_dataset.csv`        | ✅ Yes      |  
 
-Module	Schema	Sample File	CLI Support	UI Support
-GHG	ghg_schema.yaml	sample_ghg_dataset.csv	✅ Yes	✅ Yes
-CCS	sccs_schema.yaml	sample_ccs_dataset.csv	✅ Yes	✅ Yes
-UHS	suhs_schema.yaml	sample_uhs_dataset.csv	✅ Yes	✅ Yes
+---
 
+📘 **Example CLI Usage**
 
-⸻
+```bash
+# Run GHG Validator
+python cli/main.py validate-ghg examples/sample_ghg_dataset.csv
 
-📚 Citation
+# Run Water Validator
+python cli/main.py validate-water examples/sample_water_dataset.csv
 
-Please cite via Zenodo:
+# Run Intensity Validator
+python cli/main.py validate-intensity examples/sample_intensity_dataset.csv
+```
 
-Sreekanth Muktevi. (2025). OFP–OSDU ESG Validator [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.17262927
+---
 
-Your citation supports open sustainability science and open-source tooling.
+📚 **Citation**
 
-⸻
+Please cite via Zenodo:  
+**Sreekanth Muktevi. (2025). OFP–OSDU ESG Validator [Computer software]. Zenodo.**  
+https://doi.org/10.5281/zenodo.17262927
 
-📘 Example CLI Usage
+---
 
-# GHG
-python cli/validate_ghg.py examples/sample_ghg_dataset.csv schemas/ghg_schema.yaml
-
-# CCS
-python cli/validate_ccs.py examples/sample_ccs_dataset.csv schemas/sccs_schema.yaml
-
-# UHS
-python cli/validate_uhs.py examples/sample_uhs_dataset.csv schemas/suhs_schema.yaml
-
-
-⸻
-
-🔮 Roadmap
-
-Phase	Feature	Status
-Phase 1	GHG Validator	✅ Complete
-Phase 2	CCS Validator	✅ Complete
-Phase 3	UHS Validator	✅ Complete
-Phase 4	Streamlit UI	✅ Complete
-Phase 5	JOSS Submission & Testing	🔄 In Progress
-
-
-⸻
-
-🛠️ Contributors
-	•	Lead Developer: Sreekanth Muktevi (@muktevisree)
-	•	Dataset creator and validator architect for SGED, SCCS, SUHS mapped to OFP/OSDU
+🛠️ **Contributors**  
+• Lead Developer: [Sreekanth Muktevi (@muktevisree)](https://github.com/muktevisree)  
+• Architect of synthetic datasets for SGED, SCCS, SUHS, and validator framework
