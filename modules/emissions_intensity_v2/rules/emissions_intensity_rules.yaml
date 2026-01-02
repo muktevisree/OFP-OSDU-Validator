@@ -1,0 +1,23 @@
+facility_id:
+  required: true
+  type: str
+
+reporting_period:
+  required: true
+  type: str
+
+output_quantity:
+  required: true
+  type: float
+
+output_unit:
+  required: true
+  type: str
+
+co2e_emissions:
+  required: true
+  type: float
+
+emissions_unit:
+  required: true
+  type: str

@@ -1,0 +1,15 @@
+site_id:
+  required: true
+  type: str
+
+land_area_hectares:
+  required: true
+  type: float
+
+biodiversity_impact:
+  required: false
+  type: str
+
+protected_area:
+  required: false
+  type: str

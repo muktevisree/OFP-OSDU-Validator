@@ -1,0 +1,4 @@
+facility_id,reporting_period,output_quantity,output_unit,co2e_emissions,emissions_unit
+FAC-001,2025-01-01,500,tons,1000,kg
+FAC-002,2025-02-01,600,tons,1200,kg
+FAC-003,2025-03-01,400,tons,800,kg

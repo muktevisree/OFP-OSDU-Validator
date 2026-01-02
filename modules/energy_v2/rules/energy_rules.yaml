@@ -1,0 +1,15 @@
+source_type:
+  required: true
+  type: str
+
+energy_consumed:
+  required: true
+  type: float
+
+unit:
+  required: true
+  type: str
+
+renewable:
+  required: true
+  type: str

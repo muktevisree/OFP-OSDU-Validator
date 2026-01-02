@@ -6,6 +6,10 @@ reporting_year:
   required: true
   type: int
 
+reservoir_type:
+  required: true
+  type: str
+
 co2_injected:
   required: true
   type: float
@@ -18,10 +22,10 @@ co2_stored:
   required: true
   type: float
 
-latitude:
+monitoring_method:
   required: false
-  type: float
+  type: str
 
-longitude:
+verification_agency:
   required: false
-  type: float
+  type: str

@@ -1,0 +1,23 @@
+site_id:
+  required: true
+  type: str
+
+reporting_period:
+  required: true
+  type: str  # Format: YYYY-MM
+
+pollutant_type:
+  required: true
+  type: str  # e.g., SOx, NOx, PM2.5
+
+emission_quantity:
+  required: true
+  type: float
+
+unit:
+  required: true
+  type: str  # e.g., kg, tons
+
+monitoring_method:
+  required: false
+  type: str

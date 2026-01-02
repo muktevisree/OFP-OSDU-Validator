@@ -1,0 +1,4 @@
+site_id,land_area_hectares,biodiversity_impact,protected_area
+Site-101,25.5,Medium,Yes
+Site-102,15.0,Low,No
+Site-103,42.0,High,Yes

@@ -1,0 +1,19 @@
+waste_type:
+  required: true
+  type: str
+
+quantity:
+  required: true
+  type: float
+
+unit:
+  required: true
+  type: str
+
+hazardous:
+  required: true
+  type: str
+
+disposal_method:
+  required: false
+  type: str

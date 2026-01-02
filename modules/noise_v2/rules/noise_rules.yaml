@@ -1,0 +1,15 @@
+site_id:
+  required: true
+  type: str
+
+location_type:
+  required: true
+  type: str
+
+decibel_level:
+  required: true
+  type: float
+
+measurement_time:
+  required: true
+  type: str
