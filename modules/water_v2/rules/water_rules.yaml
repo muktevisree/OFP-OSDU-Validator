@@ -6,22 +6,19 @@ reporting_year:
   required: true
   type: int
 
-co2_injected:
+water_source:
+  required: true
+  type: str
+
+water_usage_m3:
   required: true
   type: float
 
-co2_leaked:
-  required: true
-  type: float
-
-co2_stored:
-  required: true
-  type: float
-
-latitude:
+wastewater_discharge_m3:
   required: false
   type: float
 
-longitude:
+discharge_location:
   required: false
-  type: float
+  type: str
+

@@ -1,0 +1,4 @@
+source_type,energy_consumed,unit,renewable
+Solar,5000,kWh,Yes
+Coal,12000,kWh,No
+Wind,3000,kWh,Yes

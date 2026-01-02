@@ -1,0 +1,4 @@
+site_id,reporting_period,pollutant_type,emission_quantity,unit,monitoring_method
+AIR-001,2025-01,SOx,123.4,kg,Sensor
+AIR-002,2025-02,NOx,98.7,kg,Manual
+AIR-003,2025-03,PM2.5,76.5,kg,Estimate

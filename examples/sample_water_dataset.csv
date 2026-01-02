@@ -1,0 +1,4 @@
+site_id,reporting_year,water_source,water_usage_m3,wastewater_discharge_m3,discharge_location
+WTR-001,2024,Groundwater,1000.5,200.0,River
+WTR-002,2024,Rainwater,500.0,50.0,Lake
+WTR-003,2024,Municipal Supply,750.0,100.0,None

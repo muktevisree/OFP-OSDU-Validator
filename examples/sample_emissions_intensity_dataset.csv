@@ -1,0 +1,4 @@
+site_id,reporting_period,total_emissions_co2e,output_quantity,intensity_unit
+Site-001,2025-Q1,1500.0,100,kg CO2e/unit
+Site-002,2025-Q1,2200.5,200,kg CO2e/unit
+Site-003,2025-Q1,1750.8,150,kg CO2e/unit

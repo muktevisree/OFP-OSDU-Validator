@@ -1,0 +1,4 @@
+site_id,location_type,decibel_level,measurement_time
+Site-001,Residential,55.2,2025-05-10 08:00
+Site-002,Industrial,78.6,2025-05-10 09:00
+Site-003,Hospital,48.0,2025-05-10 10:00

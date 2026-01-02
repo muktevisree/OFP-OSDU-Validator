@@ -1,0 +1,4 @@
+waste_type,quantity,unit,hazardous,disposal_method
+Plastic,1200,kg,No,Recycling
+Chemicals,200,L,Yes,Incineration
+Organic,950,kg,No,Composting
