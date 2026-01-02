@@ -1,0 +1,51 @@
+uhs_id:
+  required: true
+  type: str
+
+site_name:
+  required: true
+  type: str
+
+latitude:
+  required: true
+  type: float
+
+longitude:
+  required: true
+  type: float
+
+reservoir_type:
+  required: true
+  type: str
+
+reporting_year:
+  required: true
+  type: int
+
+cushion_gas_volume:
+  required: false
+  type: float
+
+working_gas_volume:
+  required: false
+  type: float
+
+total_storage_capacity:
+  required: false
+  type: float
+
+injection_volume:
+  required: false
+  type: float
+
+withdrawal_volume:
+  required: false
+  type: float
+
+net_flow:
+  required: false
+  type: float
+
+operator:
+  required: false
+  type: str
